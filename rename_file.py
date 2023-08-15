@@ -1,23 +1,41 @@
 from PyPDF2 import PdfReader
 import os
+import string
 
-_PATH = 'papers/'
+_PATH = '/Users/cameliaguerraoui/Documents/Lab/Paper'
 _EXTENSION = "pdf"
 
-def _get_author_name(names: str):
-    names = names.partition(",")[0]
-    names_splitted = names.split(" ")
-    length = len(names_splitted)-1
+def _get_first_author(names: str) -> str:
+    if ";" in names:
+        names = names.partition(";")[0]
+    elif "," in names:
+        names = names.partition(",")[0] 
+    names_splitted = [name.translate(str.maketrans('', '', string.punctuation)) for name in names.split(" ") if name]
+    return names_splitted 
+
+def _get_initials(names_splitted: list, length: int) -> list:
     initials_list = []
     for index in range(length):
         initials_list.extend(names_splitted[index][0])
-    if len(initials_list) == 0:
-        return names_splitted[length]
+    return initials_list
+
+def _create_new_name(last_name: str, initials: list) -> str:
+    if len(initials) == 0:
+        return last_name
     else:
-        return f"{names_splitted[length]}, {'. '.join(initials_list)}."
+        return f"{last_name}, {'. '.join(initials)}."
+
+def _get_author_name(names: str) -> str:
+    if len(names) > 0:
+        names_splitted = _get_first_author(names)
+        length = len(names_splitted)-1
+        initials_list = _get_initials(names_splitted, length)
+        return _create_new_name(names_splitted[length], initials_list)
 
 def _rename_file(dirpath: str, file_name: str):
     reader = PdfReader(open(f"{dirpath}/{file_name}", "rb")) 
+    if reader.is_encrypted:
+        reader.decrypt("")
     metadata = reader.metadata
     if metadata is not None:
         if metadata.author is not None and metadata.title is not None:
