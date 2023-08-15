@@ -3,7 +3,7 @@ import os
 import string
 import pdftitle
 
-_PATH = '/Users/cameliaguerraoui/Documents/Lab/Paper'
+_PATH = 'OWN PATH'
 _EXTENSION = "pdf"
 
 def _get_first_author(names: str) -> str:
