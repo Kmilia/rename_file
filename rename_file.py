@@ -1,8 +1,9 @@
 from PyPDF2 import PdfReader
 import os
 import string
+import pdftitle
 
-_PATH = 'YOUR OWN PATH'
+_PATH = '/Users/cameliaguerraoui/Documents/Lab/Paper'
 _EXTENSION = "pdf"
 
 def _get_first_author(names: str) -> str:
@@ -36,12 +37,24 @@ def _rename_file(dirpath: str, file_name: str):
     reader = PdfReader(open(f"{dirpath}/{file_name}", "rb")) 
     if reader.is_encrypted:
         reader.decrypt("")
+    
     metadata = reader.metadata
     if metadata is not None:
-        if metadata.author is not None and metadata.title is not None:
+        
+        title = metadata.title
+        if title is None:
+            try:
+                title = pdftitle.get_title_from_file(f"{dirpath}/{file}")
+            except Exception:
+                title = ""
+
+        new_name = title
+
+        if metadata.author is not None and len(metadata.author) > 0:
             author_name = _get_author_name(metadata.author)
-            new_name = f"{author_name}_{metadata.title}"
-            os.rename(f"{dirpath}/{file_name}", f"{dirpath}/{new_name}.{_EXTENSION}")
+            new_name = f"{author_name}_{title}"
+        
+        os.rename(f"{dirpath}/{file_name}", f"{dirpath}/{new_name[0:100]}.{_EXTENSION}")
 
 for (dirpath, dirnames, filenames) in os.walk(_PATH):
     for file in filenames:
