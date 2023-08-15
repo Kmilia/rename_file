@@ -1,3 +1,9 @@
+# Mac File
+.DS_Store
+
+# Folder full of papers
+papers/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
