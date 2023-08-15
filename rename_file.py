@@ -2,7 +2,7 @@ from PyPDF2 import PdfReader
 import os
 import string
 
-_PATH = '/Users/cameliaguerraoui/Documents/Lab/Paper'
+_PATH = 'YOUR OWN PATH'
 _EXTENSION = "pdf"
 
 def _get_first_author(names: str) -> str:
