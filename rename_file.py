@@ -3,7 +3,7 @@ import os
 import string
 import pdftitle
 
-_PATH = 'OWN PATH'
+_PATH = '/Users/cameliaguerraoui/Documents/Lab/Paper/Survey Explainability'
 _EXTENSION = "pdf"
 
 def _get_first_author(names: str) -> str:
@@ -48,7 +48,7 @@ def _rename_file(dirpath: str, file_name: str):
             except Exception:
                 title = ""
 
-        new_name = title
+        new_name = title.replace("/", " ")
 
         if metadata.author is not None and len(metadata.author) > 0:
             author_name = _get_author_name(metadata.author)
