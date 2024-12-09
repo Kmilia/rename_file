@@ -37,11 +37,10 @@ File Extension: Change _EXTENSION to handle files other than .pdf.
 Filename Length: Modify the new_name[0:100] slicing to adjust the maximum filename length.
 
 ## Limitations
-Encrypted Files: The script assumes an empty password for decryption; files with complex passwords won't be processed.
-Incomplete Metadata: Files without metadata or with poorly formatted metadata may not yield meaningful filenames.
-Cross-Platform Compatibility: Ensure compatibility with your operating system’s filename restrictions.
-License
-This script is distributed under the MIT License. Use it freely and modify it as needed.
+- Encrypted Files: The script assumes an empty password for decryption; files with complex passwords won't be processed.
+- Incomplete Metadata: Files without metadata or poorly formatted metadata may not yield meaningful filenames.
+- Cross-Platform Compatibility: Ensure compatibility with your operating system’s filename restrictions.
+
 
 
 
