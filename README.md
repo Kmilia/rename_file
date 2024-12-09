@@ -14,10 +14,10 @@ This script is designed to automate the renaming of PDF files in a specified dir
 ## Requirements
 - Python version: Python 3.6 or higher
 - Dependencies:
--- PyPDF2: For reading PDF metadata.
--- pdftitle: To extract the title from the PDF content if metadata is incomplete.
--- os: For file and directory manipulation.
--- string: For text processing.
+  - PyPDF2: For reading PDF metadata.
+  - pdftitle: To extract the title from the PDF content if metadata is incomplete.
+  - os: For file and directory manipulation.
+  - string: For text processing.
 
 ## How to Use
 Set the Directory Path: Update the _PATH variable to the directory containing your PDF files. Example:
